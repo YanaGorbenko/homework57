@@ -1,0 +1,24 @@
+{
+  "name": "homework57",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YanaGorbenko/homework57.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/YanaGorbenko/homework57/issues"
+  },
+  "homepage": "https://github.com/YanaGorbenko/homework57#readme",
+  "dependencies": {
+    "yargs": "^18.0.0"
+  }
+}
