@@ -63,7 +63,7 @@ yargs(hideBin(process.argv))
         const newId = maxId + 1;
         const newTask = { id: newId, title: argv.title, completed: false };
         tasks.push(newTask);
-        fs.writeFile(DB_PATH, JSON.stringify(tasks, null, 2));
+        await fs.writeFile(DB_PATH, JSON.stringify(tasks, null, 2));
         console.log(`До списку додана нова задача:`);
         console.log(newTask);
       } else {
@@ -78,9 +78,9 @@ yargs(hideBin(process.argv))
     async argv => {
       if (argv.id) {
         const tasks = await readTasks();
-        const taskIndex = tasks.findIndex(task => task.id === argv.id);
-        const taskByID = { ...tasks[taskIndex] };
+        const taskIndex = tasks.findIndex(task => task.id === Number(argv.id));
         if (taskIndex !== -1) {
+          const taskByID = { ...tasks[taskIndex] };
           if (argv.title) {
             tasks[taskIndex].title = argv.title;
           }
@@ -88,7 +88,7 @@ yargs(hideBin(process.argv))
             tasks[taskIndex].completed =
               argv.completed === 'true' ? true : false;
           }
-          fs.writeFile(DB_PATH, JSON.stringify(tasks, null, 2));
+          await fs.writeFile(DB_PATH, JSON.stringify(tasks, null, 2));
           console.log(`Початкова задача: `);
           console.log(taskByID);
           console.log(`Була змінена на `);
@@ -108,10 +108,10 @@ yargs(hideBin(process.argv))
     async argv => {
       if (argv.id) {
         const tasks = await readTasks();
-        const taskIndex = tasks.findIndex(task => task.id === argv.id);
+        const taskIndex = tasks.findIndex(task => task.id === Number(argv.id));
         if (taskIndex !== -1) {
           const newTasks = tasks.filter(task => task.id !== argv.id);
-          fs.writeFile(DB_PATH, JSON.stringify(newTasks, null, 2));
+          await fs.writeFile(DB_PATH, JSON.stringify(newTasks, null, 2));
           console.log(`Задача з id = ${argv.id} була успішно видалена`);
         } else {
           console.log(`Задача з id = ${argv.id} не знайдена`);
