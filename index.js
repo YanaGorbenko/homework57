@@ -110,7 +110,7 @@ yargs(hideBin(process.argv))
         const tasks = await readTasks();
         const taskIndex = tasks.findIndex(task => task.id === Number(argv.id));
         if (taskIndex !== -1) {
-          const newTasks = tasks.filter(task => task.id !== argv.id);
+          const newTasks = tasks.filter(task => task.id !== Number(argv.id));
           await fs.writeFile(DB_PATH, JSON.stringify(newTasks, null, 2));
           console.log(`Задача з id = ${argv.id} була успішно видалена`);
         } else {
