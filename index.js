@@ -38,7 +38,7 @@ yargs(hideBin(process.argv))
     async argv => {
       if (argv.id) {
         const tasks = await readTasks();
-        const taskById = tasks.find(task => task.id === argv.id);
+        const taskById = tasks.find(task => task.id === Number(argv.id));
         if (taskById) {
           console.log(`Задача з id = ${argv.id}:`);
           console.log(taskById);
